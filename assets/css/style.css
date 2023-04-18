@@ -1,5 +1,4 @@
 p {
-    color: black;
     font-size: 24px;
 }
 
@@ -18,4 +17,8 @@ p {
 #movie-title {
     font-size: 60px;
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+#movie-description {
+    width: 60%;
 }
