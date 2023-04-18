@@ -1,12 +1,12 @@
 //API Key for "Streaming Availabilty API"  ** only 100 calls/day **
-// we can add more keys to be able to switch through them and always have a working key
-var apiKeyMeghan = "d6f6f25352msh9dd6753ebd9249ep1e97c8jsnb8f2487ea3cd";
+// I removed my key because I got a message about a securtiy risk!
+var apiKey = "PUT your API key HERE!!"
 
 //data from the API used to fetch the data
 var options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': apiKeyMeghan,
+        'X-RapidAPI-Key': apiKey,
         'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
     }
 };
