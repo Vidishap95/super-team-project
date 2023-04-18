@@ -15,3 +15,4 @@ var movieDataEL = document.getElementById('movie-data');
 moviePosterEL.src = posterURL;
 movieTitleEl.textContent = title;
 document.getElementById('movie-data').innerHTML = "Rating: " + imdbRating + "<br><br>" + year + "<br><br>" + description + "<br></br>" + youtubeTrailerVideoLink + "<br><br>" + movieStreaming;
+
