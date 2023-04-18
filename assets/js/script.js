@@ -1,4 +1,4 @@
-console.log("Hello!");
+console.log("Welcome to our page");
 
 var posterURL = "https://image.tmdb.org/t/p/w342/1yDBZiMSVGS1IWWb7B2Rwjdz0Zj.jpg";
 var title = "Sixteen Candles";
