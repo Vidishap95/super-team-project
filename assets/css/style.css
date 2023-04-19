@@ -1,10 +1,26 @@
 p {
-
     color: rgb(196, 164, 227);
     font-size: 24px;
 }
 
 .movie-container {
-    margin-top: 20px;
+    background-color: gainsboro;
+    border: solid;
+}
 
+#movie-poster {
+    display: block;
+    margin: auto;
+    margin-top: 15px;
+    border: 10px solid white;
+}
+
+#movie-title {
+    font-size: 60px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#movie-description {
+    width: 60%;
+    margin-top: 20px;
 }
