@@ -1,7 +1,7 @@
 //API Key for "Streaming Availabilty API"  ** only 100 calls/day **
+// I removed my key because I got a message about a securtiy risk!
 var apiKey = 'c57e08632cmshdf60e809c2ea152p100330jsn3e0a705522cf';
 var apiKeyM = 'd6f6f25352msh9dd6753ebd9249ep1e97c8jsnb8f2487ea3cd';
-
 //data from the API used to fetch the data
 var options = {
     method: 'GET',
@@ -15,13 +15,11 @@ var options = {
 var movieInputBox = document.getElementById('movie-search');
 var movieButton = document.getElementById('search-btn');
 
-// calling fetch call for the search tab 
 movieButton.addEventListener('click', function(event){
       event.preventDefault();
       var value = movieInputBox.value;
       var searchURL = "https://streaming-availability.p.rapidapi.com/v2/search/title?title=" + value + "&country=us&show_type=movie&output_language=en";
       console.log(searchURL);
-
       fetch(searchURL,options)
        .then(function(response){
           return response.json();
