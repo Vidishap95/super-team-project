@@ -11,10 +11,20 @@ var options = {
     }
 };
 
-// variables for the search button
+// variables for the search button and the about button
+var aboutInfoBox = document.querySelector('about-btn');
 var movieInputBox = document.getElementById('movie-search');
 var movieButton = document.getElementById('search-btn');
 
+fetch('/About.html')
+.then (response=>response.text())
+.then(data=>{
+   aboutInfoBox.innerHTML=data
+})
+
+aboutInfoBox.addEventListener('click', () => {
+      aboutInfoSection.classList.toggle('hidden');
+});
 movieButton.addEventListener('click', function(event){
       event.preventDefault();
       var value = movieInputBox.value;
@@ -32,6 +42,7 @@ movieButton.addEventListener('click', function(event){
        .catch(err => console.error(err)); //code created by the API developers
       });
 
+// cointainer 2 for rating between 8-5 stars
 
 //function gets the movie details from the fetch object and writes them to the page
 function getMovieDetails(dataObject){
