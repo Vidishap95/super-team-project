@@ -54,3 +54,7 @@ function getMovieDetails(dataObject){
     movieInfoEL.children[4].textContent = ("Watch the youTube trailer");
     movieInfoEL.children[4].href = (youtubeTrailerVideoLink);
 }
+
+console.log("Welcome to our page");
+
+
