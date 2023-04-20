@@ -10,6 +10,7 @@ header {
     background-color: whitesmoke
 }
 
+
 .menu {
     display: flex;
 
@@ -24,6 +25,20 @@ ul {
     color: black;
     font-size: large;
 }
+
+#icon{
+    display: flex;
+    align-items: start;
+    justify-content: flex-start;
+    position: absolute;
+    padding: 1;
+    
+}
+@media screen and (device-width: 375px){
+    #icon {
+        margin-bottom: 15%;
+    }
+  }
 
 .movie-container {
     background-color: gainsboro;

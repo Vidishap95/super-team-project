@@ -24,18 +24,6 @@ var movieDescriptionEL = document.getElementById('movie-description');
 var movieTrailerEL = document.getElementById('movie-trailer');
 var streamListEL = document.getElementById('movie-streaming');
 
-{
-
-fetch('/About.html')
-   .then(response => response.text())
-   .then(data => {
-      aboutInfoBox(data);
-   });
-
-aboutInfoBox.addEventListener('click', () => {
-      aboutInfoSection.classList.toggle('hidden');
-});
-
 //when the search button is clicked - the fetch is initiated for the Streaming Availability API to return the searched movie data
 // aboutInfoBox.addEventListener('click', () => {
 //       aboutInfoSection.classList.toggle('hidden');
