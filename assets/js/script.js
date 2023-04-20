@@ -1,5 +1,4 @@
 //API Key for "Streaming Availabilty API"  ** only 100 calls/day **
-// I removed my key because I got a message about a securtiy risk!
 var apiKey = 'c57e08632cmshdf60e809c2ea152p100330jsn3e0a705522cf';
 var apiKeyM = 'd6f6f25352msh9dd6753ebd9249ep1e97c8jsnb8f2487ea3cd';
 //data from the API used to fetch the data
@@ -16,6 +15,15 @@ var aboutInfoBox = document.querySelector('about-btn');
 var movieInputBox = document.getElementById('movie-search');
 var movieButton = document.getElementById('search-btn');
 
+//variables for third-row elements
+var moviePosterEL = document.getElementById('movie-poster');
+var movieTitleEl = document.getElementById('movie-title');
+var movieYearEL = document.getElementById('movie-year');
+var movieRatingEL = document.getElementById('movie-rating');
+var movieDescriptionEL = document.getElementById('movie-description');
+var movieTrailerEL = document.getElementById('movie-trailer');
+var streamListEL = document.getElementById('movie-streaming');
+
 fetch('/About.html')
 .then (response=>response.text())
 .then(data=>{
@@ -25,6 +33,8 @@ fetch('/About.html')
 aboutInfoBox.addEventListener('click', () => {
       aboutInfoSection.classList.toggle('hidden');
 });
+
+//when the search button is clicked - the fetch is initiated for the Streaming Availability API to return the searched movie data
 movieButton.addEventListener('click', function(event){
       event.preventDefault();
       var value = movieInputBox.value;
@@ -44,29 +54,32 @@ movieButton.addEventListener('click', function(event){
 
 // cointainer 2 for rating between 8-5 stars
 
-//function gets the movie details from the fetch object and writes them to the page
+//function gets the movie details from the fetch object and writes them to the page and writes the info to local storage
 function getMovieDetails(dataObject){
    var posterURL = dataObject.posterURLs['342'];
    var title = dataObject.title;
-   var imdbRating = dataObject.imdbRating/10;
    var year = dataObject.year;
+   var imdbRating = dataObject.imdbRating/10;
    var description = dataObject.overview;
    var youtubeTrailerVideoLink = dataObject.youtubeTrailerVideoLink
    var movieStreaming = dataObject.streamingInfo.us;
    var streamingObjectKeys = Object.keys(movieStreaming);
 
-   var moviePosterEL = document.getElementById('movie-poster');
-   var movieTitleEl = document.getElementById('movie-title');
-   var movieInfoEL = document.getElementById('movie-info');
-   var streamListEL = document.getElementById('movie-streaming');
-
    moviePosterEL.src = posterURL;
    movieTitleEl.textContent = title;
-   movieInfoEL.children[1].textContent = (year);
-   movieInfoEL.children[2].textContent = ("IDMb "+ imdbRating);
-   movieInfoEL.children[3].textContent = (description);
-   movieInfoEL.children[4].textContent = ("youTube Trailer");
-   movieInfoEL.children[4].href = (youtubeTrailerVideoLink);
+   movieYearEL.textContent = year;
+   movieRatingEL.textContent = ("IDMb "+ imdbRating);
+   movieDescriptionEL.textContent = (description);
+   movieTrailerEL.textContent = ("youTube Trailer");
+   movieTrailerEL.href = (youtubeTrailerVideoLink);
+
+   localStorage.setItem("movie-poster", JSON.stringify(posterURL));
+   localStorage.setItem("movie-title", JSON.stringify(title));
+   localStorage.setItem("movie-year", JSON.stringify(year));
+   localStorage.setItem("movie-rating", JSON.stringify("IDMb "+ imdbRating));
+   localStorage.setItem("movie-description", JSON.stringify(description));
+   localStorage.setItem("movie-trailer", JSON.stringify(youtubeTrailerVideoLink));
+
 
    for (var i=0; i < streamingObjectKeys.length; i++){
       var platformKey = streamingObjectKeys[i];
@@ -83,3 +96,34 @@ function getMovieDetails(dataObject){
       list.appendChild(listAnchor);
    }
 }
+
+   //appends data from local storage to the page
+   function renderLastEvent(){
+      var lastPosterURL = JSON.parse(localStorage.getItem("movie-poster"));
+      var lastTitle = JSON.parse(localStorage.getItem("movie-title"));
+      var lastYear = JSON.parse(localStorage.getItem("movie-year"));
+      var lastRating = JSON.parse(localStorage.getItem("movie-rating"));
+      var lastDescription = JSON.parse(localStorage.getItem("movie-description"));
+      var lastTrailer = JSON.parse(localStorage.getItem("movie-trailer"));
+   
+      if(lastTitle !== null){
+         moviePosterEL.src = lastPosterURL;
+         movieTitleEl.textContent = lastTitle;
+         movieYearEL.textContent = lastYear;
+         movieRatingEL.textContent = lastRating;
+         movieDescriptionEL.textContent = lastDescription;
+         movieTrailerEL.textContent = ("youTube Trailer");
+         movieTrailerEL.href = (lastTrailer);
+
+      } else {
+        return;
+      }
+   }
+
+      //function initial() populates the page with the last saved data from local storage
+   function initial(){
+   renderLastEvent();
+   }
+
+      //calls function initial() upon browser page load and/or browser refresh
+   initial();
