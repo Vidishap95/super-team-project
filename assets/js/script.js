@@ -25,17 +25,21 @@ var movieTrailerEL = document.getElementById('movie-trailer');
 var streamListEL = document.getElementById('movie-streaming');
 
 {
+
 fetch('/About.html')
-.then (response=>response.text(){);
-.then(data=>
-   aboutInfoBox.innerHTML=data
- });
+   .then(response => response.text())
+   .then(data => {
+      aboutInfoBox(data);
+   });
 
 aboutInfoBox.addEventListener('click', () => {
       aboutInfoSection.classList.toggle('hidden');
 });
 
 //when the search button is clicked - the fetch is initiated for the Streaming Availability API to return the searched movie data
+// aboutInfoBox.addEventListener('click', () => {
+//       aboutInfoSection.classList.toggle('hidden');
+// });
 movieButton.addEventListener('click', function(event){
       event.preventDefault();
       var value = movieInputBox.value;
@@ -61,10 +65,17 @@ function getMovieDetails(dataObject){
    var title = dataObject.title;
    var year = dataObject.year;
    var imdbRating = dataObject.imdbRating/10;
+   var imdbRating = dataObject.imdbRating;
+   var year = dataObject.year;
    var description = dataObject.overview;
    var youtubeTrailerVideoLink = dataObject.youtubeTrailerVideoLink
    var movieStreaming = dataObject.streamingInfo.us;
    var streamingObjectKeys = Object.keys(movieStreaming);
+   var movieStreaming = dataObject.streamingInfo.us //still working on this!
+
+   var moviePosterEL = document.getElementById('movie-poster');
+   var movieTitleEl = document.getElementById('movie-title');
+   var movieInfoEL = document.getElementById('movie-info');
 
    moviePosterEL.src = posterURL;
    movieTitleEl.textContent = title;
@@ -96,6 +107,14 @@ function getMovieDetails(dataObject){
       streamListEL.appendChild(list);
       list.appendChild(listAnchor);
    }
+
+   movieInfoEL.children[1].textContent = (year);
+   movieInfoEL.children[2].textContent = ("IDMb "+ imdbRating);
+   movieInfoEL.children[3].textContent = (description);
+   movieInfoEL.children[4].textContent = ("Watch the youTube trailer");
+   movieInfoEL.children[4].href = (youtubeTrailerVideoLink);
+   // movieInfoEL.children[5].textContent = ("<br>Hulu: " + movieStreaming.hulu[0].link); //needs work - will break code as of right now!!
+   // movieInfoEL.children[5].href = (movieStreaming.hulu[0].link); //needs work - will break code as of right now!!
 }
 
    //appends data from local storage to the page
