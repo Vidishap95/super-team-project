@@ -24,11 +24,12 @@ var movieDescriptionEL = document.getElementById('movie-description');
 var movieTrailerEL = document.getElementById('movie-trailer');
 var streamListEL = document.getElementById('movie-streaming');
 
+{
 fetch('/About.html')
-.then (response=>response.text())
-.then(data=>{
+.then (response=>response.text(){);
+.then(data=>
    aboutInfoBox.innerHTML=data
-})
+ });
 
 aboutInfoBox.addEventListener('click', () => {
       aboutInfoSection.classList.toggle('hidden');
