@@ -28,6 +28,7 @@ var movieButton = document.getElementById("search-btn");
 // aboutInfoBox.addEventListener("click", () => {
 //   aboutInfoSection.classList.toggle("hidden");
 // });
+
 movieButton.addEventListener("click", function (event) {
   event.preventDefault();
   var value = movieInputBox.value;
@@ -48,8 +49,9 @@ movieButton.addEventListener("click", function (event) {
     .catch((err) => console.error(err)); //code created by the API developers
 });
 
-// cointainer 2 for rating between 8-5 stars
+// cointainer 1 for rating between 10-9 stars
 
+// API for container 1 "Favorites"
 const options2 = {
   method: "GET",
   headers: {
@@ -58,22 +60,33 @@ const options2 = {
   },
 };
 
-fetch("https://imdb-top-100-movies.p.rapidapi.com/", options2)
-  .then((response) => {
-    //  console.log(response);
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
+function applyMoviesToCards(favoritesInfo) {
+  fetch("https://imdb-top-100-movies.p.rapidapi.com/", options2)
+    .then((response) => {
+      // console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      // console.log(data);
+      var posterCard1 = document.querySelector(".card-img-top1");
+      var titleCard1 = document.getElementById("#card-title");
+      console.log(posterCard1);
+      console.log(titleCard1);
+      // console.log(data[0].thumbnail); //test for image
+      // console.log(data[0].title); //test for title
+      // var favPoster = favoritesInfo.posterCard1;
+      var favTitle = data[2].title;
+      console.log(favTitle);
 
-var posterCard = document.getElementById("poster");
-var titleCard = document.getElementById("card-text");
+      titleCard1.text(favTitle);
+    })
 
-function applyMovies() {}
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+applyMoviesToCards();
 //function gets the movie details from the fetch object and writes them to the page
 function getMovieDetails(dataObject) {
   var posterURL = dataObject.posterURLs["342"];
