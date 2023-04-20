@@ -1,11 +1,11 @@
 //API Key for "Streaming Availabilty API"  ** only 100 calls/day **
 var apiKey = "c57e08632cmshdf60e809c2ea152p100330jsn3e0a705522cf";
-var apiKeyM = "d6f6f25352msh9dd6753ebd9249ep1e97c8jsnb8f2487ea3cd";
+var apiKeyC = "ea2834bc81msh2d97ced269ee288p19940ejsnff1f27caaa7d";
 //data from the API used to fetch the data
 var options = {
   method: "GET",
   headers: {
-    "X-RapidAPI-Key": apiKeyM,
+    "X-RapidAPI-Key": apiKeyC,
     "X-RapidAPI-Host": "streaming-availability.p.rapidapi.com",
   },
 };
