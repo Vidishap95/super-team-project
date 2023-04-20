@@ -6,7 +6,6 @@ p {
     font-size: 24px;
 }
 
-
 header {
     background-color: whitesmoke
 }
@@ -38,6 +37,12 @@ ul {
     border: 10px solid white;
 }
 
+#movie-year,
+#movie-rating,
+#movie-description {
+    color: black;
+}
+
 #movie-title {
     font-size: 60px;
     font-family: 'Roboto Condensed', sans-serif;
@@ -46,4 +51,9 @@ ul {
 #movie-description {
     width: 60%;
     margin-top: 20px;
+}
+
+#movie-trailer,
+#movie-streaming {
+    font-size: 24px;
 }
