@@ -48,28 +48,38 @@ movieButton.addEventListener('click', function(event){
 function getMovieDetails(dataObject){
    var posterURL = dataObject.posterURLs['342'];
    var title = dataObject.title;
-   var imdbRating = dataObject.imdbRating;
+   var imdbRating = dataObject.imdbRating/10;
    var year = dataObject.year;
    var description = dataObject.overview;
    var youtubeTrailerVideoLink = dataObject.youtubeTrailerVideoLink
-   var movieStreaming = dataObject.streamingInfo.us //still working on this!
+   var movieStreaming = dataObject.streamingInfo.us;
+   var streamingObjectKeys = Object.keys(movieStreaming);
 
    var moviePosterEL = document.getElementById('movie-poster');
    var movieTitleEl = document.getElementById('movie-title');
    var movieInfoEL = document.getElementById('movie-info');
+   var streamListEL = document.getElementById('movie-streaming');
 
    moviePosterEL.src = posterURL;
    movieTitleEl.textContent = title;
-
    movieInfoEL.children[1].textContent = (year);
    movieInfoEL.children[2].textContent = ("IDMb "+ imdbRating);
    movieInfoEL.children[3].textContent = (description);
-   movieInfoEL.children[4].textContent = ("Watch the youTube trailer");
+   movieInfoEL.children[4].textContent = ("youTube Trailer");
    movieInfoEL.children[4].href = (youtubeTrailerVideoLink);
-   // movieInfoEL.children[5].textContent = ("<br>Hulu: " + movieStreaming.hulu[0].link); //needs work - will break code as of right now!!
-   // movieInfoEL.children[5].href = (movieStreaming.hulu[0].link); //needs work - will break code as of right now!!
+
+   for (var i=0; i < streamingObjectKeys.length; i++){
+      var platformKey = streamingObjectKeys[i];
+      var platformLink = movieStreaming[platformKey][0].link;
+
+      var list = document.createElement("li");
+      var listAnchor = document.createElement("a");
+
+      listAnchor.textContent = platformKey;
+      listAnchor.setAttribute("href", platformLink);
+      listAnchor.setAttribute("target", "_blank");
+
+      streamListEL.appendChild(list);
+      list.appendChild(listAnchor);
+   }
 }
-
-//console.log("Welcome to our page");
-
-
