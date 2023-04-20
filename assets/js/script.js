@@ -1,7 +1,7 @@
 //API Key for "Streaming Availabilty API"  ** only 100 calls/day **
+// I removed my key because I got a message about a securtiy risk!
 var apiKey = 'c57e08632cmshdf60e809c2ea152p100330jsn3e0a705522cf';
 var apiKeyM = 'd6f6f25352msh9dd6753ebd9249ep1e97c8jsnb8f2487ea3cd';
-
 //data from the API used to fetch the data
 var options = {
     method: 'GET',
@@ -11,17 +11,25 @@ var options = {
     }
 };
 
-// variables for the search button
+// variables for the search button and the about button
+var aboutInfoBox = document.querySelector('about-btn');
 var movieInputBox = document.getElementById('movie-search');
 var movieButton = document.getElementById('search-btn');
 
-// calling fetch call for the search tab 
+fetch('/About.html')
+.then (response=>response.text())
+.then(data=>{
+   aboutInfoBox.innerHTML=data
+})
+
+aboutInfoBox.addEventListener('click', () => {
+      aboutInfoSection.classList.toggle('hidden');
+});
 movieButton.addEventListener('click', function(event){
       event.preventDefault();
       var value = movieInputBox.value;
       var searchURL = "https://streaming-availability.p.rapidapi.com/v2/search/title?title=" + value + "&country=us&show_type=movie&output_language=en";
       console.log(searchURL);
-
       fetch(searchURL,options)
        .then(function(response){
           return response.json();
@@ -34,6 +42,7 @@ movieButton.addEventListener('click', function(event){
        .catch(err => console.error(err)); //code created by the API developers
       });
 
+// cointainer 2 for rating between 8-5 stars
 
 //function gets the movie details from the fetch object and writes them to the page
 function getMovieDetails(dataObject){
