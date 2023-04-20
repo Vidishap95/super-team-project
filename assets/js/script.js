@@ -29,11 +29,7 @@ var streamListEL = document.getElementById("movie-streaming");
 movieButton.addEventListener("click", function (event) {
   event.preventDefault();
   var value = movieInputBox.value;
-  var searchURL =
-    "https://streaming-availability.p.rapidapi.com/v2/search/title?title=" +
-    value +
-    "&country=us&show_type=movie&output_language=en";
-  console.log(searchURL);
+  var searchURL = "https://streaming-availability.p.rapidapi.com/v2/search/title?title=" + value +"&country=us&show_type=movie&output_language=en";
   fetch(searchURL, options)
     .then(function (response) {
       return response.json();
@@ -104,17 +100,10 @@ function getMovieDetails(dataObject) {
   var title = dataObject.title;
   var year = dataObject.year;
   var imdbRating = dataObject.imdbRating / 10;
-  var imdbRating = dataObject.imdbRating;
-  var year = dataObject.year;
   var description = dataObject.overview;
   var youtubeTrailerVideoLink = dataObject.youtubeTrailerVideoLink;
   var movieStreaming = dataObject.streamingInfo.us;
   var streamingObjectKeys = Object.keys(movieStreaming);
-  var movieStreaming = dataObject.streamingInfo.us; //still working on this!
-
-  var moviePosterEL = document.getElementById("movie-poster");
-  var movieTitleEl = document.getElementById("movie-title");
-  var movieInfoEL = document.getElementById("movie-info");
 
   moviePosterEL.src = posterURL;
   movieTitleEl.textContent = title;
@@ -129,10 +118,7 @@ function getMovieDetails(dataObject) {
   localStorage.setItem("movie-year", JSON.stringify(year));
   localStorage.setItem("movie-rating", JSON.stringify("IDMb " + imdbRating));
   localStorage.setItem("movie-description", JSON.stringify(description));
-  localStorage.setItem(
-    "movie-trailer",
-    JSON.stringify(youtubeTrailerVideoLink)
-  );
+  localStorage.setItem("movie-trailer",JSON.stringify(youtubeTrailerVideoLink));
 
   for (var i = 0; i < streamingObjectKeys.length; i++) {
     var platformKey = streamingObjectKeys[i];
@@ -148,14 +134,6 @@ function getMovieDetails(dataObject) {
     streamListEL.appendChild(list);
     list.appendChild(listAnchor);
   }
-
-  movieInfoEL.children[1].textContent = year;
-  movieInfoEL.children[2].textContent = "IDMb " + imdbRating;
-  movieInfoEL.children[3].textContent = description;
-  movieInfoEL.children[4].textContent = "Watch the youTube trailer";
-  movieInfoEL.children[4].href = youtubeTrailerVideoLink;
-  // movieInfoEL.children[5].textContent = ("<br>Hulu: " + movieStreaming.hulu[0].link); //needs work - will break code as of right now!!
-  // movieInfoEL.children[5].href = (movieStreaming.hulu[0].link); //needs work - will break code as of right now!!
 }
 
 //appends data from local storage to the page
