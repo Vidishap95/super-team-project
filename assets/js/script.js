@@ -25,9 +25,7 @@ var movieTrailerEL = document.getElementById("movie-trailer");
 var streamListEL = document.getElementById("movie-streaming");
 
 //when the search button is clicked - the fetch is initiated for the Streaming Availability API to return the searched movie data
-// aboutInfoBox.addEventListener('click', () => {
-//       aboutInfoSection.classList.toggle('hidden');
-// });
+
 movieButton.addEventListener("click", function (event) {
   event.preventDefault();
   var value = movieInputBox.value;
