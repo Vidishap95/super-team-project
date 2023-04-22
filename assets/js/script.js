@@ -108,7 +108,7 @@ function getMovieDetails(dataObject) {
   moviePosterEL.src = posterURL;
   movieTitleEl.textContent = title;
   movieYearEL.textContent = year;
-  movieRatingEL.textContent = "IDMb " + imdbRating;
+  movieRatingEL.textContent = "IMDb " + imdbRating;
   movieDescriptionEL.textContent = description;
   movieTrailerEL.textContent = "youTube Trailer";
   movieTrailerEL.href = youtubeTrailerVideoLink;
@@ -116,7 +116,7 @@ function getMovieDetails(dataObject) {
   localStorage.setItem("movie-poster", JSON.stringify(posterURL));
   localStorage.setItem("movie-title", JSON.stringify(title));
   localStorage.setItem("movie-year", JSON.stringify(year));
-  localStorage.setItem("movie-rating", JSON.stringify("IDMb " + imdbRating));
+  localStorage.setItem("movie-rating", JSON.stringify("IMDb " + imdbRating));
   localStorage.setItem("movie-description", JSON.stringify(description));
   localStorage.setItem("movie-trailer",JSON.stringify(youtubeTrailerVideoLink));
 
